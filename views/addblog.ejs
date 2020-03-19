@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+</head>
+
+<body>
+    <%- include layout %>
+    <div class="container">
+        <h2 align="center">add/write blog stock</h2>
+        <a href="/blog/add">add article </a>
+
+        <% if(locals.errorResults){ %>
+            <ul class="alert alert-danger">
+                <% Object.values(errorResults).forEach(function(errorResult){ %>
+                    <li  style="margin-left:30px;"><%= errorResult.msg %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+
+        <form method="post" enctype="multipart/form-data" action="/blog/add">
+            <input type="file" name="file">
+            <input type="submit" value="Submit">
+        </form>
+
+
+        <form class="" action="/blog/add" method="post">
+            <div class="form-group">
+                <label for="">Name article</label>
+                <input type="text" name="name" value="" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">description article</label>
+                <textarea rows="6" cols="80" name="description" value="" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="">auther article</label>
+                <textarea rows="6" cols="80" name="auther" value="" class="form-control"></textarea>
+            </div>
+            
+
+            <input type="submit" name="" value="บันทึก" class="btn btn-primary">
+
+        </form>
+
+    </div>
+
+    <script>
+        CKEDITOR.replace('description');
+    </script>
+
+
+</body>
+
+</html>
